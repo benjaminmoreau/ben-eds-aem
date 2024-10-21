@@ -59,6 +59,7 @@ function buildAutoBlocks(main) {
  */
 // eslint-disable-next-line import/prefer-default-export
 export function decorateMain(main) {
+  console.log('decorateMain...');
   // hopefully forward compatible button decoration
   decorateButtons(main);
   decorateIcons(main);
@@ -121,9 +122,11 @@ function loadDelayed() {
 }
 
 async function loadPage() {
+  console.log('loadPage...');
   await loadEager(document);
   await loadLazy(document);
   loadDelayed();
+  console.log('loadedPage!');
 }
 
 loadPage();

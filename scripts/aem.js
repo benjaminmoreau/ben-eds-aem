@@ -126,6 +126,8 @@ function sampleRUM(checkpoint, data) {
  * Setup block utils.
  */
 function setup() {
+  console.log("setup");
+
   window.hlx = window.hlx || {};
   window.hlx.RUM_MASK_URL = 'full';
   window.hlx.RUM_MANUAL_ENHANCE = true;
@@ -217,6 +219,7 @@ function readBlockConfig(block) {
       }
     }
   });
+  console.log("config=", config);
   return config;
 }
 
@@ -275,6 +278,7 @@ function getMetadata(name, doc = document) {
   const meta = [...doc.head.querySelectorAll(`meta[${attr}="${name}"]`)]
     .map((m) => m.content)
     .join(', ');
+   console.log("getMetadata", name, meta);
   return meta || '';
 }
 
@@ -292,6 +296,8 @@ function createOptimizedPicture(
   eager = false,
   breakpoints = [{ media: '(min-width: 600px)', width: '2000' }, { width: '750' }],
 ) {
+  console.log("createOptimizedPicture for ", src);
+
   const url = new URL(src, window.location.href);
   const picture = document.createElement('picture');
   const { pathname } = url;
@@ -629,6 +635,8 @@ function decorateBlocks(main) {
  * @returns {Promise}
  */
 async function loadHeader(header) {
+  console.log("loadHeader");
+
   const headerBlock = buildBlock('header', '');
   header.append(headerBlock);
   decorateBlock(headerBlock);
@@ -641,6 +649,8 @@ async function loadHeader(header) {
  * @returns {Promise}
  */
 async function loadFooter(footer) {
+  console.log("loadFooter ");
+
   const footerBlock = buildBlock('footer', '');
   footer.append(footerBlock);
   decorateBlock(footerBlock);
@@ -690,6 +700,8 @@ async function loadSection(section, loadCallback) {
  */
 
 async function loadSections(element) {
+  console.log("loadSections ");
+
   const sections = [...element.querySelectorAll('div.section')];
   for (let i = 0; i < sections.length; i += 1) {
     // eslint-disable-next-line no-await-in-loop
