@@ -461,6 +461,8 @@ function decorateIcons(element, prefix = '') {
  * @param {Element} main The container element
  */
 function decorateSections(main) {
+  console.log("decorateSections");
+
   main.querySelectorAll(':scope > div').forEach((section) => {
     const wrappers = [];
     let defaultContent = false;
@@ -571,6 +573,7 @@ function buildBlock(blockName, content) {
  * @param {Element} block The block element
  */
 async function loadBlock(block) {
+  console.log("loadBlock", block);
   const status = block.dataset.blockStatus;
   if (status !== 'loading' && status !== 'loaded') {
     block.dataset.blockStatus = 'loading';
@@ -626,6 +629,7 @@ function decorateBlock(block) {
  * @param {Element} main The container element
  */
 function decorateBlocks(main) {
+  console.log("decorateBlocks");
   main.querySelectorAll('div.section > div > div').forEach(decorateBlock);
 }
 
@@ -680,6 +684,7 @@ async function waitForFirstImage(section) {
  */
 
 async function loadSection(section, loadCallback) {
+  console.log("loadSection ", section)
   const status = section.dataset.sectionStatus;
   if (!status || status === 'initialized') {
     section.dataset.sectionStatus = 'loading';
